@@ -1,11 +1,13 @@
 const puppeteer = require("puppeteer");
 const Page = require("./helpers/page");
+const variables = require("./helpers/variables");
 
 let page;
+const { localhost } = variables;
 
 beforeEach(async () => {
   page = await Page.build();
-  await page.goto("http://localhost:3000");
+  await page.goto(localhost);
 });
 
 afterEach(async () => {

@@ -1,13 +1,12 @@
-// import { colorCode } from "./helpers/variables";
 const Page = require("./helpers/page");
-// import { variables } from "./helpers/variables";
+const variables = require("./helpers/variables");
 
 let page;
-const myTitle = "My Title";
+const { myTitle, localhost, subUrl1 } = variables;
 
 beforeEach(async () => {
   page = await Page.build();
-  await page.goto("http://localhost:3000");
+  await page.goto(localhost);
 });
 
 afterEach(async () => {
@@ -17,7 +16,7 @@ afterEach(async () => {
 describe("When logged in", async () => {
   beforeEach(async () => {
     await page.login();
-    await page.goto("http://localhost:3000/categories");
+    await page.goto(`${localhost}/${subUrl1}`);
     await page.click("a.btn-floating");
   });
 
@@ -27,7 +26,7 @@ describe("When logged in", async () => {
   });
 
   test("can cancel create form works", async () => {
-    const urlEnd = "categories";
+    const urlEnd = subUrl1;
     let label = await page.getContentsOf("form label");
 
     expect(label).toEqual("Category Title");
@@ -53,7 +52,7 @@ describe("When logged in", async () => {
       const url = await page.url();
       const text = url.split("/");
 
-      expect(text[text.length - 1]).toEqual("categories");
+      expect(text[text.length - 1]).toEqual(subUrl1);
     });
 
     test("Submitting then saving adds a new category to index page", async () => {

@@ -1,5 +1,5 @@
-const variables = {
-  localhost: "http://localhost:"
+module.exports = {
+  localhost: "http://localhost:3000",
+  myTitle: "My Category Title",
+  subUrl1: "categories"
 };
-
-export { variables };
