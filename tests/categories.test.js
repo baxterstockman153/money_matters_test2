@@ -1,4 +1,6 @@
+// import { colorCode } from "./helpers/variables";
 const Page = require("./helpers/page");
+// import { variables } from "./helpers/variables";
 
 let page;
 const myTitle = "My Title";

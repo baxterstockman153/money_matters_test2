@@ -4,7 +4,15 @@ const userFactory = require("../factories/userFactory");
 
 class CustomPage {
   static async build() {
-    const browser = await puppeteer.launch({ headless: false });
+    let browser;
+    if (process.env.NODE_ENV === "ci") {
+      browser = await puppeteer.launch({
+        headless: true,
+        args: ["--no-sandbox"]
+      });
+    } else {
+      browser = await puppeteer.launch({ headless: false });
+    }
     // const browser = await puppeteer.launch({
     //   headless: true,
     //   args: ["--no-sandbox"]
