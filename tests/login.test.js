@@ -24,7 +24,7 @@ describe("When logged in", async () => {
   });
 
   test("can see current user page", async () => {
-    await page.goto("localhost:3000/api/current_user");
+    await page.goto("http://localhost:3000/api/current_user");
     const content = await page.getContentsOf("pre");
     const contentJson = JSON.parse(content);
     const expected = '{"_id":"5b818da8df1e19341fa7b959","__v":0}';
@@ -41,7 +41,7 @@ describe("When logged in", async () => {
     await page.waitFor('a[href="/auth/google"]');
     expect(content).toEqual(landingPageText);
 
-    await page.goto("localhost:3000/api/current_user");
+    await page.goto("http://localhost:3000/api/current_user");
     const body = await page.getContentsOf("body");
     expect(body).toEqual("");
   });
@@ -49,7 +49,7 @@ describe("When logged in", async () => {
 
 describe("When User is not logged in", async () => {
   test("current user returns not logged in", async () => {
-    await page.goto("localhost:3000/api/current_user");
+    await page.goto("http://localhost:3000/api/current_user");
     const content = await page.getContentsOf("body");
     expect(content).toEqual("");
 
