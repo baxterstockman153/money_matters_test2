@@ -24,7 +24,10 @@ module.exports = app => {
       const category = await Category.findOne({ _id: req.params.categoryId });
       res.send(category);
     } catch (err) {
-      res.send(err);
+      console.log('id=',req.params.categoryId)
+      // res.send(err)
+      // res.status(404).send(err);
+      res.status(404).send(err);
     }
   });
 

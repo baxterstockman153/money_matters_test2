@@ -6,8 +6,9 @@ import * as actions from "../actions";
 import Header from "./Header";
 import Landing from "./Landing";
 import Categories from "./Categories";
-import Category from "./Category";
 import CategoryNew from "./categories/CategoryNew";
+import CategoryDetail from "./categories/CategoryDetail"
+
 
 class App extends Component {
   componentDidMount() {
@@ -22,7 +23,7 @@ class App extends Component {
           <Route exact path="/" component={Landing} />
           <Route exact path="/categories" component={Categories} />
           <Route exact path="/categories/new" component={CategoryNew} />
-          <Route exact path="/category" component={Category} />
+          <Route exact path="/categories/:id" component={CategoryDetail} />
         </div>
       </BrowserRouter>
     );

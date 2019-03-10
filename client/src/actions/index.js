@@ -1,19 +1,23 @@
 import axios from "axios";
-import { FETCH_USER, CREATE_CATEGORY, FETCH_CATEGORIES } from "./types";
+import * as actions from "./types";
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get("/api/current_user");
-  dispatch({ type: FETCH_USER, payload: res.data });
+  dispatch({ type: actions.FETCH_USER, payload: res.data });
 };
 
 export const createCategory = (values, history) => async dispatch => {
   history.push("/categories");
   const res = await axios.post("/api/categories", values);
-  dispatch({ type: CREATE_CATEGORY, payload: res.data });
+  dispatch({ type: actions.CREATE_CATEGORY, payload: res.data });
 };
 
 export const fetchCategories = () => async dispatch => {
   const res = await axios.get("/api/categories");
-  console.log(res.data);
-  dispatch({ type: FETCH_CATEGORIES, payload: res.data });
+  dispatch({ type: actions.FETCH_CATEGORIES, payload: res.data });
+};
+
+export const fetchCategory = (categoryId) => async dispatch => {
+  const res = await axios.get(`/api/categories/${categoryId}`);
+  dispatch({ type: actions.FETCH_CATEGORY, payload: res.data });
 };

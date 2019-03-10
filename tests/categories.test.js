@@ -2,7 +2,7 @@ const Page = require("./helpers/page");
 const variables = require("./helpers/variables");
 
 let page;
-const { myTitle, localhost, subUrl1 } = variables;
+const { myTitle, localhost, categoriesUrl } = variables;
 
 beforeEach(async () => {
   page = await Page.build();
@@ -16,7 +16,7 @@ afterEach(async () => {
 describe("When logged in", async () => {
   beforeEach(async () => {
     await page.login();
-    await page.goto(`${localhost}/${subUrl1}`);
+    await page.goto(`${localhost}/${categoriesUrl}`);
     await page.click("a.btn-floating");
   });
 
@@ -26,7 +26,7 @@ describe("When logged in", async () => {
   });
 
   test("can cancel create form works", async () => {
-    const urlEnd = subUrl1;
+    const urlEnd = categoriesUrl;
     let label = await page.getContentsOf("form label");
 
     expect(label).toEqual("Category Title");
@@ -52,7 +52,7 @@ describe("When logged in", async () => {
       const url = await page.url();
       const text = url.split("/");
 
-      expect(text[text.length - 1]).toEqual(subUrl1);
+      expect(text[text.length - 1]).toEqual(categoriesUrl);
     });
 
     test("Submitting then saving adds a new category to index page", async () => {

@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import map from "lodash/map";
+
 import { fetchCategories } from "../../actions";
 
 class CategoryList extends Component {
@@ -7,15 +10,18 @@ class CategoryList extends Component {
     this.props.fetchCategories();
   }
   renderCategories() {
-    return this.props.categories.map((category, idx) => {
+    const { categories } = this.props;
+    return map(categories, category => {
       return (
-        <div className="card blue-grey darken-1" key={idx}>
-          <div className="card-content white-text">
-            <span className="card-title">{category.name}</span>
-            <p>Placeholder for a picture</p>
+        <Link to={`/categories/${category._id}`} key={category._id}>
+          <div className="card blue-grey darken-1">
+            <div className="card-content white-text">
+              <span className="card-title">{category.name}</span>
+              <p>Placeholder for a picture</p>
+            </div>
+            <div className="card-action">placeholder for value</div>
           </div>
-          <div className="card-action">placeholder for value</div>
-        </div>
+        </Link>
       );
     });
   }

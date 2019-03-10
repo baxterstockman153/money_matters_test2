@@ -45,7 +45,7 @@ if (["production", "ci"].includes(process.env.NODE_ENV)) {
   });
 }
 
-console.log("hi", process.env.NODE_ENV);
+// console.log("hi", process.env.NODE_ENV);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT);
